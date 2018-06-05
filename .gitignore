@@ -1,0 +1,75 @@
+
+# /
+.vs
+/Logs
+/Output
+bin/
+obj/
+packages/
+aspnet_client/
+node_modules/
+
+*.user
+*.jmconfig
+*.suo
+.idea/
+*.vsmdi
+*.eslintrc
+
+StyleCop.Cache
+
+# /Client/UI/MedAvante.UI.Resources/Resources/Images/
+/Client/UI/MedAvante.UI.Resources/Resources/Images/Stock
+/Client/UI/MedAvante.UI.Resources/Resources/Images/Icons Original
+
+# /Client/WebApp/MedAvante.Portal/
+/Client/WebApp/MedAvante.Portal/App_Cache
+
+# /Client/WebApp/MedAvante.Portal/Content/
+/Client/WebApp/MedAvante.Portal/Content/font
+/Client/WebApp/MedAvante.Portal/Content/common.css
+/Client/WebApp/MedAvante.Portal/Content/reset.css
+/Client/WebApp/MedAvante.Portal/Content/spinner.css
+/Client/WebApp/MedAvante.Portal/Content/Vendors
+/Client/WebApp/MedAvante.Portal/Content/general.css
+/Client/WebApp/MedAvante.Portal/Content/general.less
+/Client/WebApp/MedAvante.Portal/Content/source.css
+/Client/WebApp/MedAvante.Portal/Content/source.less
+/Client/WebApp/MedAvante.Portal/Content/prepros-6.config
+/Client/WebApp/MedAvante.Portal/Content/*.map
+
+
+
+# /Client/WebApp/MedAvante.Portal/Scripts/
+/Client/WebApp/MedAvante.Portal/Scripts/Vendors
+
+# /Solutions/transform/
+
+/Solutions/transform/
+!Solutions/transform/Install-Manifest.xml
+!Solutions/transform/Microsoft.Web.XmlTransform.dll
+!Solutions/transform/SlowCheetah.Transforms.targets
+!Solutions/transform/SlowCheetah.Xdt.dll
+
+
+Solutions/.vs/
+/Solutions/Components/
+
+# JavaScript test output
+_Chutzpah.*.test.html
+Solutions/TestResults/
+Client/WebApp/MedAvante.Portal/Tmp/
+
+Components/Solutions/.vs/
+Solutions/License.log
+
+**/[Tt]ools
+!**/[Tt]ools/nuget/
+
+# FAKE - F# Make
+.fake/
+
+/build
+msvc/scripts/deploy/common-orig-backup.ps1
+Database/Virgil_StrikForceDBScriptLog_20180417_0437.log
+/msvc/gateways/mobile/src/main/MedAvante.Virgil.Gateways.Mobile.Api/MockData/Answers
