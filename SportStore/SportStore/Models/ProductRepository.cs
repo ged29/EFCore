@@ -1,22 +1,23 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SportStore.Models
 {
-    public class DataRepository : IRepository
+    public class ProductRepository : IProductRepository
     {
         private DataContext dataContext;
 
-        public DataRepository(DataContext dataContext)
+        public ProductRepository(DataContext dataContext)
         {
             this.dataContext = dataContext;
         }
 
-        public IEnumerable<Product> Products => dataContext.Products.ToArray();
+        public IEnumerable<Product> Products => dataContext.Products.Include(p => p.Category).ToArray();
 
-        public Product GetProduct(long key)
+        public Product GetProduct(long id)
         {
-            return dataContext.Products.Find(key);
+            return dataContext.Products.Include(p => p.Category).First(p => p.Id == id);
         }
 
         public void AddProduct(Product product)
@@ -27,12 +28,12 @@ namespace SportStore.Models
 
         public void UpdateProduct(Product product)
         {
-            Product p = GetProduct(product.Id);
-            p.Name = product.Name;
-            p.Category = product.Category;
-            p.PurchasePrice = product.PurchasePrice;
-            p.RetailPrice = product.RetailPrice;
-            //dataContext.Products.Update(product);
+            Product baseline = dataContext.Products.Find(product.Id);
+            baseline.Name = product.Name;
+            baseline.PurchasePrice = product.PurchasePrice;
+            baseline.RetailPrice = product.RetailPrice;
+            baseline.CategoryId = product.CategoryId;
+
             dataContext.SaveChanges();
         }
 

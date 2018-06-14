@@ -2,23 +2,29 @@
 
 <form asp-action="UpdateProduct" method="post">
     <div class="form-group">
-        <label asp-for="Id">Id</label>
+        <label asp-for="Id" />
         <input asp-for="Id" class="form-control" readonly />
     </div>
     <div class="form-group">
-        <label asp-for="Name">Name</label>
+        <label asp-for="Name" />
         <input asp-for="Name" class="form-control" />
     </div>
     <div class="form-group">
-        <label asp-for="Category">Category</label>
-        <input asp-for="Category" class="form-control" />
+        <label asp-for="Category" />
+        @*<input asp-for="Category" class="form-control" />*@
+        <select class="form-control" asp-for="CategoryId">
+            @if (Model.Id == 0) { 
+                <option disabled selected>Choose Category</option>
+            }
+            @foreach(Category cat in )
+        </select>
     </div>
     <div class="form-group">
-        <label asp-for="PurchasePrice">PurchasePrice</label>
+        <label asp-for="PurchasePrice" />
         <input asp-for="PurchasePrice" class="form-control" />
     </div>
     <div class="form-group">
-        <label asp-for="RetailPrice">RetailPrice</label>
+        <label asp-for="RetailPrice" />
         <input asp-for="RetailPrice" class="form-control" />
     </div>
     <div class="text-center">

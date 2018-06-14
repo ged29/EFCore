@@ -9,36 +9,39 @@ namespace SportStore.Controllers
 {
     public class HomeController : Controller
     {
-        private IRepository repository;
+        private readonly IProductRepository productRepository;
+        private readonly ICategoryRepository categoryRepository;
 
-        public HomeController(IRepository repository)
+        public HomeController(IProductRepository productRepository, ICategoryRepository categoryRepository)
         {
-            this.repository = repository;
+            this.productRepository = productRepository;
+            this.categoryRepository = categoryRepository;
         }
 
         public IActionResult Index()
         {
             ViewBag.UpdateAll = false;
-            return View(repository.Products);
+            return View(productRepository.Products);
         }
 
         public IActionResult UpdateAll()
         {
             ViewBag.UpdateAll = true;
-            return View(nameof(Index), repository.Products);
+            return View(nameof(Index), productRepository.Products);
         }
 
         [HttpPost]
         public IActionResult UpdateAll(Product[] products)
         {
             Console.Clear();
-            repository.UpdateProducts(products);
+            productRepository.UpdateProducts(products);
             return RedirectToAction(nameof(Index));
         }
 
         public IActionResult UpdateProduct(long key)
         {
-            return View(key == 0 ? new Product() : repository.GetProduct(key));
+            ViewBag.Categories = this.categoryRepository.Categories;
+            return View(key == 0 ? new Product() : productRepository.GetProduct(key));
         }
 
         [HttpPost]
@@ -46,11 +49,11 @@ namespace SportStore.Controllers
         {
             if (product.Id == 0)
             {
-                repository.AddProduct(product);
+                productRepository.AddProduct(product);
             }
             else
             {
-                repository.UpdateProduct(product);
+                productRepository.UpdateProduct(product);
             }
 
             return RedirectToAction(nameof(Index));
@@ -59,7 +62,7 @@ namespace SportStore.Controllers
         [HttpPost]
         public IActionResult DeleteProduct(Product product)
         {
-            repository.DeleteProduct(product);
+            productRepository.DeleteProduct(product);
             return RedirectToAction(nameof(Index));
         }
     }
