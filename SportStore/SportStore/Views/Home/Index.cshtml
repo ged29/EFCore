@@ -16,19 +16,7 @@
             <div class="col font-weight-bold text-right">Purchase Price</div>
             <div class="col font-weight-bold text-right">Retail Price</div>
             <div class="col"></div>
-        </div>
-        <form asp-action="UpdateProduct" method="post">
-            <div class="row">
-                <div class="col-1"></div>
-                <div class="col"><input name="Name" class="form-control" /></div>
-                <div class="col"><input name="Category" class="form-control" /></div>
-                <div class="col"><input name="PurchasePrice" class="form-control" /></div>
-                <div class="col"><input name="RetailPrice" class="form-control" /></div>
-                <div class="col">
-                    <button type="submit" class="btn btn-primary">Add</button>
-                </div>
-            </div>
-        </form>
+        </div>       
         @if (Model.Count() == 0)
         {
             <div class="row">
@@ -42,7 +30,7 @@
                 <div class="row p-2">
                     <div class="col-1">@p.Id</div>
                     <div class="col">@p.Name</div>
-                    <div class="col">@p.Category</div>
+                    <div class="col">@p.Category.Name</div>
                     <div class="col text-right">@p.PurchasePrice</div>
                     <div class="col text-right">@p.RetailPrice</div>
                     <div class="col">                        
@@ -58,7 +46,7 @@
             }
         }
         <div class="text-center">
-            <a asp-action="UpdateAll" class="btn btn-primary">Edit All</a>
+            <a asp-action="UpdateProduct" class="btn btn-primary">Add</a>
         </div>
     }
 </div>

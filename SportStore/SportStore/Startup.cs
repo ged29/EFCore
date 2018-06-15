@@ -28,6 +28,7 @@ namespace SportStore
             services.AddMvc();
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddTransient<IOrdersRepository, OrdersRepository>();
             services.AddDbContext<DataContext>(option => option.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
         }
 
