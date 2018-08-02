@@ -12,7 +12,7 @@ namespace ServiceLayer.BookServices.Dtos
         public string FilterValue { get; set; }
 
         public int CurrentPage { get; set; }
-        public int PageSize { get; set; }
+        public int PageSize { get; set; } = DefaultPageSize;
         public int[] PageSizes = new[] { 5, DefaultPageSize, 20, 50, 100, 500, 1000 };
         /// <summary>
         /// This is set to the number of pages available based on the number of entries in the query

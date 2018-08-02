@@ -17,8 +17,13 @@
     "minify": {
       "enabled": true,
       "renameLocals": true
-    },
-    // Optionally generate .map file
-    "sourceMap": false
+    }
+  },
+  {
+    "outputFileName": "wwwroot/js/bundle.js",
+    "inputFiles": [
+      "wwwroot/js/loggingDisplay.js",
+      "wwwroot/js/bookList.js"
+    ]
   }
 ]

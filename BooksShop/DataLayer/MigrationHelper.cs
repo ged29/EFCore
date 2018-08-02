@@ -17,3 +17,6 @@ namespace DataLayer
         }
     }
 }
+
+// Add-Migration Chapter02 -Project DataLayer -StartupProject EfCoreInAction
+// Update-database -Project DataLayer -StartupProject EfCoreInAction

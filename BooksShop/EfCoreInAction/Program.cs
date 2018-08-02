@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore;
+﻿using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 
 namespace EfCoreInAction
 {
@@ -17,9 +11,24 @@ namespace EfCoreInAction
             BuildWebHost(args).Run();
         }
 
-        public static IWebHost BuildWebHost(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
+        public static IWebHost BuildWebHost(string[] args)
+        {
+            return new WebHostBuilder()
+                .UseKestrel()
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .ConfigureAppConfiguration(ConfigureAppConfiguration)
                 .UseStartup<Startup>()
-                .Build();
+                .Build()
+                .SetupDevelopmentDatabase();
+        }
+
+        public static void ConfigureAppConfiguration(WebHostBuilderContext hostingContext, IConfigurationBuilder configurationBuilder)
+        {
+            var env = hostingContext.HostingEnvironment;
+            configurationBuilder
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true)
+                .AddEnvironmentVariables();
+        }
     }
 }
