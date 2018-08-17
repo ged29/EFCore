@@ -75,13 +75,20 @@
                 </div>
             </td>
             <td class="vert-align">
-                @*<div class="dropdown">
-                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                @if (Context.Request.IsLocal())
+                {
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
                             Admin
                             <span class="caret"></span>
                         </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1"></ul>
-                    </div>*@
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Change Pub Date", "ChangePubDate", "Admin", new { bookId = item.BookId })</li>
+                            <li>@Html.ActionLink("Add Price Promotion", "ChangePromotion", "Admin", new { bookId = item.BookId })</li>
+                            <li>@Html.ActionLink("Add Review", "AddBookReview", "Admin", new { bookId = item.BookId })</li>
+                        </ul>
+                    </div>
+                }
             </td>
             <td class="vert-align">
                 @*@if (item.ActualPrice >= 0)

@@ -15,6 +15,8 @@ namespace DataLayer
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<BookAuthor>().HasKey(x => new { x.BookId, x.AuthorId });
+
+            modelBuilder.Entity<Book>().HasQueryFilter(entity => entity.SoftDeleted == false);
         }
     }
 }
