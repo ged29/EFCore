@@ -1,4 +1,5 @@
-﻿using DataLayer.Entities;
+﻿using System;
+using DataLayer.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataLayer
@@ -8,9 +9,10 @@ namespace DataLayer
         public DbSet<Book> Books { get; set; }
         public DbSet<Author> Authors { get; set; }
         public DbSet<PriceOffer> PriceOffers { get; set; }
+        public DbSet<Order> Orders { get; set; }
 
         public DataContext(DbContextOptions<DataContext> options)
-            : base(options) { }
+            : base(options) { }        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

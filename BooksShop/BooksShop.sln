@@ -3,13 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2011
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "DataLayer\DataLayer.csproj", "{D2B38FC2-B747-43F6-9029-99A39B78C845}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataLayer", "DataLayer\DataLayer.csproj", "{D2B38FC2-B747-43F6-9029-99A39B78C845}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceLayer", "ServiceLayer\ServiceLayer.csproj", "{830D3CE2-98A8-434D-B2A9-EABFBE004F84}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceLayer", "ServiceLayer\ServiceLayer.csproj", "{830D3CE2-98A8-434D-B2A9-EABFBE004F84}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{3CF32AFB-8E3C-48BB-B732-BA10EA995336}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test", "Test\Test.csproj", "{3CF32AFB-8E3C-48BB-B732-BA10EA995336}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EfCoreInAction", "EfCoreInAction\EfCoreInAction.csproj", "{7E8F676F-213C-4952-B10B-07197FD08C3D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EfCoreInAction", "EfCoreInAction\EfCoreInAction.csproj", "{7E8F676F-213C-4952-B10B-07197FD08C3D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BizLogic", "BizLogic\BizLogic.csproj", "{98A5EEB9-66E8-4FCD-B683-158B9CDCD245}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BizDbAccess", "BizDbAccess\BizDbAccess.csproj", "{AAF5EB4C-1613-4C70-8991-A53C3A5A8B96}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{7E8F676F-213C-4952-B10B-07197FD08C3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E8F676F-213C-4952-B10B-07197FD08C3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E8F676F-213C-4952-B10B-07197FD08C3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98A5EEB9-66E8-4FCD-B683-158B9CDCD245}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98A5EEB9-66E8-4FCD-B683-158B9CDCD245}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98A5EEB9-66E8-4FCD-B683-158B9CDCD245}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98A5EEB9-66E8-4FCD-B683-158B9CDCD245}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAF5EB4C-1613-4C70-8991-A53C3A5A8B96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAF5EB4C-1613-4C70-8991-A53C3A5A8B96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAF5EB4C-1613-4C70-8991-A53C3A5A8B96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAF5EB4C-1613-4C70-8991-A53C3A5A8B96}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
