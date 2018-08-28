@@ -1,11 +1,9 @@
 ﻿using BizLogic.Orders;
 using DataLayer;
 using Microsoft.AspNetCore.Http;
-using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using System.Text;
 
 namespace ServiceLayer.CheckoutServices.Concrete
 {

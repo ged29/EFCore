@@ -6,26 +6,31 @@ using DataLayer.Entities;
 using Microsoft.AspNetCore.Http;
 using ServiceLayer.BizRunners;
 using ServiceLayer.CheckoutServices.Concrete;
+using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.ComponentModel.DataAnnotations;
+using System.Text;
 
 namespace ServiceLayer.OrderServices.Concrete
 {
-    public class PlaceOrderService
+    public class PlaceOrderServiceTransact
     {
         private readonly CheckoutCookie checkoutCookie;
-        private readonly RunnerWriteDb<PlaceOrderInDto, Order> runner;
+        private readonly RunnerTransact2WriteDb<PlaceOrderInDto, Part1ToPart2Dto, Order> runner;
 
         public IImmutableList<ValidationResult> Errors => runner.Errors;
 
-        public PlaceOrderService(
+        public PlaceOrderServiceTransact(
             IRequestCookieCollection cookiesIn,
             IResponseCookies cookiesOut,
             DataContext dataContext)
         {
             IPlaceOrderDbAccess dbAccess = new PlaceOrderDbAccess(dataContext);
-            IPlaceOrderAction placeOrderAction = new PlaceOrderAction(dbAccess);
-            runner = new RunnerWriteDb<PlaceOrderInDto, Order>(placeOrderAction, dataContext);
+            PlaceOrderPart1 placeOrderPart1 = new PlaceOrderPart1(dbAccess);
+            PlaceOrderPart2 placeOrderPart2 = new PlaceOrderPart2(dbAccess);
+
+            runner = new RunnerTransact2WriteDb<PlaceOrderInDto, Part1ToPart2Dto, Order>(dataContext, placeOrderPart1, placeOrderPart2);
             checkoutCookie = new CheckoutCookie(cookiesIn, cookiesOut);
         }
 

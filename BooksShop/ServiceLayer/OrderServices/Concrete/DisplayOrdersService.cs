@@ -34,13 +34,11 @@ namespace ServiceLayer.OrderServices.Concrete
 
         private IQueryable<OrderListDto> Select(IQueryable<Order> orders)
         {
-            return orders.Select(order =>
-            new OrderListDto
+            return orders.Select(order => new OrderListDto
             {
                 OrderId = order.OrderId,
                 DateOrderedUtc = order.DateOrderedUtc,
-                LineItems = order.LineItems.Select(lineItem =>
-                new CheckoutItemDto
+                LineItems = order.LineItems.Select(lineItem => new CheckoutItemDto
                 {
                     BookId = lineItem.BookId,
                     Title = lineItem.ChosenBook.Title,

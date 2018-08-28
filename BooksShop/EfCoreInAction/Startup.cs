@@ -33,11 +33,11 @@ namespace EfCoreInAction
 
             var connString = Configuration.GetConnectionString("DefaultConnection");
 
-            if (Configuration["ENVIRONMENT"] == "Development")
-            {
-                //if running in development mode then we alter the connection to have the branch name in it
-                connString = connString.FormDatabaseConnection(gitBranchName);
-            }
+            //if (Configuration["ENVIRONMENT"] == "Development")
+            //{
+            //    //if running in development mode then we alter the connection to have the branch name in it
+            //    connString = connString.FormDatabaseConnection(gitBranchName);
+            //}
 
             services.AddDbContext<DataContext>(dbCtxOpts => dbCtxOpts.UseSqlServer(
                 connString,

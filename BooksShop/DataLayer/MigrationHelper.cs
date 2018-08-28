@@ -6,7 +6,7 @@ namespace DataLayer
     public class MigrationHelper : IDesignTimeDbContextFactory<DataContext>
     {
         private const string ConnectionString =
-            "Server=.;Database=MyEFCoreInActionDb;Trusted_Connection=True;MultipleActiveResultSets=true";
+            "Server=.;Database=EfCoreInActionDb;Trusted_Connection=True;MultipleActiveResultSets=true";
 
         public DataContext CreateDbContext(string[] args)
         {

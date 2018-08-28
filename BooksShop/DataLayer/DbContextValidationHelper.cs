@@ -65,7 +65,7 @@ namespace DataLayer
                 var valContext = new ValidationContext(entity, valProvider, null);
                 var valErrors = new List<ValidationResult>();
 
-                if (Validator.TryValidateObject(entity, valContext, valErrors, true))
+                if (!Validator.TryValidateObject(entity, valContext, valErrors, true))
                 {
                     result.AddRange(valErrors);
                 }

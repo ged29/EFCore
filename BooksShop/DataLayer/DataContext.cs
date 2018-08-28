@@ -12,13 +12,20 @@ namespace DataLayer
         public DbSet<Order> Orders { get; set; }
 
         public DataContext(DbContextOptions<DataContext> options)
-            : base(options) { }        
+            : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
+        {            
             modelBuilder.Entity<BookAuthor>().HasKey(x => new { x.BookId, x.AuthorId });
 
             modelBuilder.Entity<Book>().HasQueryFilter(entity => entity.SoftDeleted == false);
+
+            modelBuilder.Entity<LineItem>()
+                .HasOne(item => item.ChosenBook)
+                .WithMany()
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Order>().ToTable("Orders");
         }
     }
 }

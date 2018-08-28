@@ -11,13 +11,8 @@ namespace ServiceLayer.Utils
 
         protected CookieTemplate(string cookieName, IRequestCookieCollection cookiesIn, IResponseCookies cookiesOut = null)
         {
-            if (cookiesIn == null)
-            {
-                throw new ArgumentNullException(nameof(cookiesIn));
-            }
-
             this.cookieName = cookieName;
-            this.cookiesIn = cookiesIn;
+            this.cookiesIn = cookiesIn ?? throw new ArgumentNullException(nameof(cookiesIn));
             this.cookiesOut = cookiesOut;
         }
 

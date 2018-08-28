@@ -4,7 +4,6 @@ using DataLayer.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace BizLogic.Orders.Concrete
 {
@@ -32,6 +31,7 @@ namespace BizLogic.Orders.Concrete
             }
 
             var bookIds = dto.LineItems.Select(lineItem => lineItem.BookId);
+            //to present the data as an in-memory set(in this case, a dictionary)
             var booksDict = dbAccess.FindBooksByIdsWithPriceOffers(bookIds);
             var order = new Order
             {
@@ -58,7 +58,7 @@ namespace BizLogic.Orders.Concrete
             {
                 if (!booksDict.ContainsKey(lineItem.BookId))
                 {
-                    throw new InvalidOperationException($"Could not find the {i} book you wanted to order. Please remove that book and try again.");
+                    throw new InvalidOperationException($"Could not find the {line} book you wanted to order. Please remove that book and try again.");
                 }
 
                 var book = booksDict[lineItem.BookId];

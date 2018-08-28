@@ -10,7 +10,7 @@ using ServiceLayer.Logger;
 
 namespace EfCoreInAction.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseTraceController
     {
         private readonly DataContext dataContext;
 

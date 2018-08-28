@@ -1,0 +1,7 @@
+﻿@model ImmutableList<ServiceLayer.CheckoutServices.CheckoutItemDto>
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+
+@Html.Partial("ListBasketPartial", @Model)

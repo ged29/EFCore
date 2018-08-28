@@ -36,7 +36,7 @@ namespace BizLogic.Orders.Concrete
             {
                 if (!booksDict.ContainsKey(lineItem.BookId))
                 {
-                    throw new InvalidOperationException($"Could not find the {i} book you wanted to order. Please remove that book and try again.");
+                    throw new InvalidOperationException($"Could not find the {line} book you wanted to order. Please remove that book and try again.");
                 }
 
                 var book = booksDict[lineItem.BookId];
