@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ServiceLayer.AdminServices.Concrete
 {
-    public class ChangePriceOfferService
+    public class ChangePriceOfferService : IChangePriceOfferService
     {
         private readonly DataContext dataContex;
 

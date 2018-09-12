@@ -9,6 +9,9 @@ using Microsoft.EntityFrameworkCore;
 using ServiceLayer.DatabaseServices;
 using Microsoft.Extensions.Logging;
 using EfCoreInAction.Logger;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using System;
 
 namespace EfCoreInAction
 {
@@ -22,7 +25,7 @@ namespace EfCoreInAction
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             var gitBranchName = DatabaseStartupHelpers.GetWwwRootPath().GetBranchName();
             // Add framework services.
@@ -42,6 +45,12 @@ namespace EfCoreInAction
             services.AddDbContext<DataContext>(dbCtxOpts => dbCtxOpts.UseSqlServer(
                 connString,
                 sqlDbCtxOpts => sqlDbCtxOpts.MigrationsAssembly("DataLayer")));
+
+            var containerBuilder = new ContainerBuilder();
+            containerBuilder.RegisterModule<ServiceLayer.Utils.MyAutoFacModule>();
+            containerBuilder.Populate(services);
+            var container = containerBuilder.Build();
+            return new AutofacServiceProvider(container);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

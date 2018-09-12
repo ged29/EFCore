@@ -5,7 +5,7 @@ using DataLayer.Entities;
 
 namespace ServiceLayer.AdminServices.Concrete
 {
-    public class ChangePubDateService
+    public class ChangePubDateService : IChangePubDateService
     {
         private readonly DataContext dataContext;
 

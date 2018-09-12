@@ -21,34 +21,31 @@ namespace EfCoreInAction.Controllers
             this.hostingEnvironment = hostingEnvironment;
         }
 
-        public IActionResult ChangePubDate(int bookId)
+        public IActionResult ChangePubDate(int bookId, [FromServices] IChangePubDateService service)
         {
             Request.ThrowErrorIfNotLocal();
-
-            var service = new ChangePubDateService(dataContext);
             var original = service.GetOriginal(bookId);
+            SetupTraceInfo();
 
             return View(original);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult ChangePubDate(ChangePubDateDto changePubDate)
+        public IActionResult ChangePubDate(ChangePubDateDto changePubDate, [FromServices] IChangePubDateService service)
         {
             Request.ThrowErrorIfNotLocal();
-
-            var service = new ChangePubDateService(dataContext);
             var updatedBook = service.UpdateBook(changePubDate);
+            SetupTraceInfo();
 
             return View("BookUpdated", "Successfully changed publication date");
         }
 
 
-        public IActionResult ChangePromotion(int bookId)
+        public IActionResult ChangePromotion(int bookId, [FromServices] IChangePriceOfferService service)
         {
             Request.ThrowErrorIfNotLocal();
 
-            var service = new ChangePriceOfferService(dataContext);
             var priceOffer = service.GetOriginal(bookId);
 
             ViewData["BookTilte"] = service.OrgBook.Title;
@@ -56,17 +53,18 @@ namespace EfCoreInAction.Controllers
                 ? "Not currently for sale"
                 : service.OrgBook.Price.ToString("c", new CultureInfo("en-US"));
 
+            SetupTraceInfo();
+
             return View(priceOffer);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult ChangePromotion(PriceOffer priceOffer)
+        public IActionResult ChangePromotion(PriceOffer priceOffer, [FromServices] IChangePriceOfferService service)
         {
             Request.ThrowErrorIfNotLocal();
-
-            var service = new ChangePriceOfferService(dataContext);
             var updatedBook = service.UpdateBook(priceOffer);
+            SetupTraceInfo();
 
             return View("BookUpdated", "Successfully added/changed a promotion");
         }
@@ -103,7 +101,7 @@ namespace EfCoreInAction.Controllers
             Request.ThrowErrorIfNotLocal();
 
             dataContext.DevelopmentEnsureCreated();
-            var numBooks = dataContext.SeedDatabase(hostingEnvironment.WebRootPath);            
+            var numBooks = dataContext.SeedDatabase(hostingEnvironment.WebRootPath);
             return View("BookUpdated", $"Successfully reset the database and added {numBooks} books.");
         }
     }
